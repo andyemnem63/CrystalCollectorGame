@@ -1,0 +1,24 @@
+		PseduCode Crystal Game
+
+1. Show random Number at start of game
+
+.create random Crystal value
+
+2. if image is clicked add points to total score
+	a. images should have values
+3. When image is clicked again update points by adding
+   image clicked points to current total points 
+4. if Total score === random number
+	a. WINNER!!!
+5. else if total score > random number
+	6. LOSER!!!
+
+
+--------side note---------
+Should show wins and loses
+automotic restart with out refresh page
+
+random number = 19 - 120
+
+each crystal have random hidden value
+between 1 - 12
