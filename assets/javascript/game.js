@@ -1,72 +1,109 @@
-$(document).ready(function(){
-//The players score	
-var playerScore = 0;
-//Prints players score to scoreDisplay
-$('.scoreDisplayChild').html(playerScore);
 
-function randomNumbers(){
-	/*creates random number between 19-120
-	  for the random Number box*/
-	var randNum = Math.floor(Math.random() * (120 - 19 + 1)) + 19;
-	//Prints random number to the random number nox
-	$('.ranNumBox').html(randNum);
+
+//Global Variables-------------------------------------	----------
+
+var crys1 = Math.floor(Math.random() * (12 - 1) + 1);
+var crys2 = Math.floor(Math.random() * (12 - 1) + 1);
+var crys3 = Math.floor(Math.random() * (12 - 1) + 1);
+var crys4 = Math.floor(Math.random() * (12 - 1) + 1);
+
+
+//Counter
+var win = 0;
+var loss = 0;
+var finalScore;
+				
+
+//Functions------------------------------------------------------
+	function reset()
+	{
+		//reset
+		 randNum = Math.floor(Math.random() * (120 - 19) + 19);
+		 console.log('randomNumber =  ' + randNum);
+		 crys1 = Math.floor(Math.random() * (12 - 1) + 1);
+		 crys2 = Math.floor(Math.random() * (12 - 1) + 1);
+		 crys3 = Math.floor(Math.random() * (12 - 1) + 1);
+		 crys4 = Math.floor(Math.random() * (12 - 1) + 1)
+		 finalScore = 0;
+
+		 //HTML
+		 $('.ranNumBox').html(randNum);
+		 $('.scoreDisplayChild').html(finalScore);
+		 start();
+	}
+
+	function start()
+	{
+		 //reset
+		 randNum = Math.floor(Math.random() * (120 - 19) + 19);
+		 console.log('randomNumber =  ' + randNum);
+		 crys1 = Math.floor(Math.random() * (12 - 1) + 1);
+		 crys2 = Math.floor(Math.random() * (12 - 1) + 1);
+		 crys3 = Math.floor(Math.random() * (12 - 1) + 1);
+		 crys4 = Math.floor(Math.random() * (12 - 1) + 1)
+		 finalScore = 0;
+
+		 //HTML
+		 $('.ranNumBox').html(randNum);
+		 $('.scoreDisplayChild').html(finalScore);
+
+
+
+		//This gives each crystal a random value
+		$('.crystal1').attr("value", crys1);
+			var test = $('.crystal1').attr("value");
+			//Test / Debug
+			console.log('crystal 1   '+test);
+
+		$('.crystal2').attr("value", crys2);
+		var test = $('.crystal2').attr("value");
+		//Test / Debug
+		console.log('crystal 2   '+test);
+
+		$('.crystal3').attr("value", crys3);
+		var test = $('.crystal3').attr("value");
+		//Test / Debug
+		console.log('crystal 3   '+test);
+
+		$('.crystal4').attr("value", crys4);
+		var test = $('.crystal4').attr("value");
+		//Test / Debug
+		console.log('crystal 4   '+test);
+
+		//When clicked saves to Final score
+			//added the .off() because it will repeat the click twice without it and save the last number that
+			// was clicked and push it to the total score during the next game.
+		$('.box').off().on('click', function()
+		{
+			var test1 = $(this).attr('value');
+			//Adds to final score when clicked
+			finalScore = parseInt(finalScore) + parseInt(test1);
+			console.log('Crystal*  ' +  test1);
+			console.log('finalScore***  ' + finalScore);
+			$('.scoreDisplayChild').html(finalScore);
+
+			if(randNum === finalScore)
+			{
+				alert('win');
+				win++;
+				$('.win').html(win);
+				$('.scoreDisplayChild').html(0);
+				reset();
+				
+			}
+			else if (finalScore > randNum)
+			{
+				alert('loser');
+				loss++;
+				$('.loss').html(loss);
+				$('.scoreDisplayChild').html(0);
+				reset();
+			}
+
+		}); 
+
+
 }
 
-function bt1RandNum()
-{
-	//creates random number for btn1
-	var randNumbt1 = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
-	
-	$('.b1').on('click',function(){
-		var demo = $('.b1').attr('value', randNumbt1);
-		var test1 = $('.b1').attr('value');
-		console.log('button #1 ' + test1);
-	});	
-}
-function bt2RandNum()
-{
-	//creates random number for btn1
-	var randNumbt2 = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
-	
-	$('.b2').on('click',function(){
-		var demo = $('.b2').attr('value', randNumbt2);
-		var test2 = $('.b2').attr('value');
-		console.log('button #2 ' +  test2);
-	});	
-}
-function bt3RandNum()
-{
-	//creates random number for btn1
-	var randNumbt3 = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
-	
-	$('.b3').on('click',function(){
-		var demo = $('.b3').attr('value', randNumbt3);
-		var test3 = $('.b3').attr('value');
-		console.log('button #3 ' + test3);
-	});	
-}
-function bt4RandNum()
-{
-	//creates random number for btn1
-	var randNumbt4 = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
-	
-	$('.b4').on('click',function(){
-		var demo = $('.b4').attr('value', randNumbt4);
-		var test4 = $('.b4').attr('value');
-		console.log('button #4 ' +  test4);
-	});	
-}
-	
-	randomNumbers();
-	bt1RandNum();
-	bt2RandNum();
-	bt3RandNum();
-	bt4RandNum();	
-
-
-
-
-
-
-
-});
+//Main------------------------------------
+start();
